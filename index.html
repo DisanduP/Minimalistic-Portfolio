@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            color: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 60px 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 50px;
+            font-weight: 300;
+            animation: fadeIn 1s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            max-width: 600px;
+            animation: fadeIn 1s ease 0.4s backwards;
+        }
+
+        .simple-link {
+            display: inline-block;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s backwards;
+        }
+
+        .simple-link:hover {
+            padding-bottom: 8px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        .projects-list {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .project-item {
+            padding: 60px 0;
+            border-bottom: 1px solid #e5e5e5;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-item:hover {
+            background: #fafafa;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
+        .project-number {
+            font-size: 14px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .project-content h3 {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .project-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 12px;
+            color: #999;
+            padding: 5px 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.9;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 16px;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skills-list li:first-child {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .skill-level {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 150px 60px;
+        }
+
+        .contact-title {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .contact-email {
+            font-size: 24px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: #1a1a1a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #1a1a1a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #e5e5e5;
+            color: #999;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 100px 30px 60px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            section {
+                padding: 60px 30px;
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .contact-section {
+                padding: 100px 30px;
+            }
+
+            .contact-title {
+                font-size: 32px;
+            }
+
+            .contact-email {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Your Name</div>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Designer & Developer based in New York</h1>
+            <p class="subtitle">Creating thoughtful digital experiences</p>
+            <p class="hero-description">
+                I craft clean, functional interfaces that solve real problems. My work combines strategic thinking with attention to detail, always focused on the end user.
+            </p>
+            <a href="#work" class="simple-link">VIEW PROJECTS</a>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="section-label">Selected Work</div>
+        <div class="projects-list">
+            <div class="project-item">
+                <div class="project-number">01</div>
+                <div class="project-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>Redesigned the complete shopping experience for a sustainable fashion brand, resulting in a 45% increase in conversion rates. Focused on minimal friction and clear product storytelling.</p>
+                    <div class="project-tags">
+                        <span class="tag">UI/UX Design</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-number">02</div>
+                <div class="project-content">
+                    <h3>Financial Dashboard</h3>
+                    <p>Built a comprehensive analytics platform for portfolio management. Simplified complex data visualization to make financial insights accessible to everyday investors.</p>
+                    <div class="project-tags">
+                        <span class="tag">Data Visualization</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-number">03</div>
+                <div class="project-content">
+                    <h3>Wellness Mobile App</h3>
+                    <p>Designed and developed a meditation app focused on simplicity and daily habit formation. Featured in App Store's "Apps We Love" category.</p>
+                    <div class="project-tags">
+                        <span class="tag">Mobile Design</span>
+                        <span class="tag">React Native</span>
+                        <span class="tag">Animation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-label">About</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I'm a designer and developer passionate about creating digital products that are both beautiful and functional.</p>
+                <p>With over 5 years of experience, I've worked with startups and established companies to bring their ideas to life through thoughtful design and clean code.</p>
+                <p>When I'm not designing or coding, you'll find me exploring new coffee shops, reading design books, or hiking in the mountains.</p>
+            </div>
+            <div>
+                <ul class="skills-list">
+                    <li>
+                        <span>UI/UX Design</span>
+                        <span class="skill-level">Expert</span>
+                    </li>
+                    <li>
+                        <span>Frontend Development</span>
+                        <span class="skill-level">Advanced</span>
+                    </li>
+                    <li>
+                        <span>React & Next.js</span>
+                        <span class="skill-level">Advanced</span>
+                    </li>
+                    <li>
+                        <span>Prototyping</span>
+                        <span class="skill-level">Expert</span>
+                    </li>
+                    <li>
+                        <span>Responsive Design</span>
+                        <span class="skill-level">Expert</span>
+                    </li>
+                    <li>
+                        <span>User Research</span>
+                        <span class="skill-level">Intermediate</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="contact-title">Let's work together</h2>
+        <a href="mailto:hello@yourname.com" class="contact-email">hello@yourname.com</a>
+        <div class="social-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#">Dribbble</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-item, .about-grid').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
